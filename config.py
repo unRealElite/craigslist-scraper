@@ -14,9 +14,11 @@
 
 settings_dict = {
     'url': 'http://newyork.craigslist.org/que/aap/',
-    'period': 10,
+    'notifierurl': 'http://newyork.craigslist.org',
+    'period': 300,
     'neighborhoods': [
         'astoria',
+        'sunnyside',
     ],
     'ignored_neighborhoods': [
         'ditmars',
@@ -27,12 +29,11 @@ settings_dict = {
         'bayside',
         'jamaica',
         'forest hills',
-        'sunnyside',
-        'woodside',
         'queens village',
         'woodhaven'
     ],
-    'max_rent': 1600
+    'max_rent': 1600,
+    'database': 'test.db'
 }
 
 

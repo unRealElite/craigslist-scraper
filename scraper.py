@@ -19,6 +19,7 @@ import md5
 import re
 import time
 import urllib2
+from pync import Notifier
 
 from config import settings
 
@@ -71,7 +72,7 @@ def scrape():
         try:
             parsed = parse_entry(entry)
         except:
-            cprint("\n+Failure: " + str(entry), 'red')
+            #cprint("\n+Failure: " + str(entry), 'red')
             continue
 
         if parsed['id'] in all_entries:
@@ -79,9 +80,12 @@ def scrape():
         all_entries[parsed['id']] = parsed
         if parsed['match']:
             cprint(str(parsed), 'green')
+            Notifier.notify(parsed['hook'], title='Craigslist', open=settings.notifierurl+parsed['link'], )
+
 
 
 if __name__ == '__main__':
     while True:
+        print 'Request sent ... '
         scrape()
         time.sleep(settings.period)
