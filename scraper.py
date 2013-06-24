@@ -25,36 +25,37 @@ from config import settings
 PRICE_REGEX = re.compile('\$([\d]+)')
 all_entries = {}
 
+
 def parse_entry(entry):
     ret = {}
 
+    #Unique ID
     ret['id'] = md5.md5(str(entry)).hexdigest()
 
-    link = entry.find('a')
+    #Link to the listing
+    link = entry.find('span', {'class': 'pl'}).find('a')
     ret['link'] = link['href']
 
+    #Link content
     hook = link.contents[0]
     ret['hook'] = hook
 
-    price_g = PRICE_REGEX.search(hook)
+    #Price
+    price = entry.find('span', {'class': 'price'}).contents[0]
+    price_g = PRICE_REGEX.search(price)
     price_match = False
     if price_g:
         ret['price'] = int(price_g.group(1))
         if ret['price'] <= settings.max_rent:
             price_match = True
-            
 
-    neighborhood = entry.find('font').contents[0]
-    ret['neighborhood'] = neighborhood
-
+    #Neighborhood
+    neighborhood = entry.find('small').contents[0]
+    neighborhood = neighborhood.lower()
     neighborhood_match = False
     for n in settings.neighborhoods:
-        if n.lower() in neighborhood.lower():
+        if n in neighborhood:
             neighborhood_match = True
-
-    for n in settings.badhoods:
-        if n.lower() in neighborhood.lower():
-            neighborhood_match = False
 
     ret['match'] = price_match and neighborhood_match
 
@@ -64,14 +65,13 @@ def parse_entry(entry):
 def scrape():
     html = urllib2.urlopen(settings.url).read()
     soup = BeautifulSoup.BeautifulSoup(html)
+    bq = soup.findAll('p', {'class': 'row'})
 
-    bq = soup.findAll('blockquote')[1]
-    entries = bq.findAll('p')
-    for entry in entries:
+    for entry in bq:
         try:
             parsed = parse_entry(entry)
         except:
-            #cprint("failure. " + str(entry), 'red')
+            cprint("\n+Failure: " + str(entry), 'red')
             continue
 
         if parsed['id'] in all_entries:
@@ -79,6 +79,7 @@ def scrape():
         all_entries[parsed['id']] = parsed
         if parsed['match']:
             cprint(str(parsed), 'green')
+
 
 if __name__ == '__main__':
     while True:

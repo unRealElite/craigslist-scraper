@@ -4,3 +4,5 @@
 .DS_STORE
 *.pyc
 *.log
+
+/spreadsheet_config.py

@@ -13,27 +13,32 @@
 #   limitations under the License.
 
 settings_dict = {
-    'url' : 'http://sfbay.craigslist.org/apa/',
-    'period' : 60,
-    'neighborhoods' : [
-        'north beach', 
-        'telegraph hill', 
-        'marina', 
-        'cow hollow', 
-        'russian hill', 
-        'soma',
-	'downtown'
+    'url': 'http://newyork.craigslist.org/que/aap/',
+    'period': 10,
+    'neighborhoods': [
+        'astoria',
     ],
-    'badhoods' : [
-        'oakland',
-        'san jose'
+    'ignored_neighborhoods': [
+        'ditmars',
+        'astoria (ditmars area)',
+        'jackson heights',
+        'briarwood',
+        'rego park',
+        'bayside',
+        'jamaica',
+        'forest hills',
+        'sunnyside',
+        'woodside',
+        'queens village',
+        'woodhaven'
     ],
-    'max_rent' : 1700
+    'max_rent': 1600
 }
+
 
 class Settings(object):
     pass
 
 settings = Settings()
-for k,v in settings_dict.items():
+for k, v in settings_dict.items():
     setattr(settings, k, v)
