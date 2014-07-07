@@ -8,3 +8,6 @@
 ### Install [pync's Notification Wrapper](https://github.com/setem/pync)
 - Requires Mac OS X 10.8 or higher...
 - $ sudo pip install pync
+
+### Install [mailer](https://pypi.python.org/pypi/mailer/)
+- $ sudo pip mailer
