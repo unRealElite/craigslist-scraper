@@ -16,6 +16,7 @@ settings_dict = {
     'url': 'http://sfbay.craigslist.org/apa',
     'notifierurl': 'http://sfbay.craigslist.org/apa',
     'period': 21600,
+    'bedrooms': '3br'
     'neighborhoods': [
         'oakland west',
         'emeryville',
