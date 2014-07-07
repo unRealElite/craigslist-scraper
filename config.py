@@ -13,8 +13,8 @@
 #   limitations under the License.
 
 settings_dict = {
-    'url': 'http://newyork.craigslist.org/que/aap/',
-    'notifierurl': 'http://newyork.craigslist.org',
+    'url': 'http://sfbay.craigslist.org/apa',
+    'notifierurl': 'http://sfbay.craigslist.org/apa',
     'period': 21600,
     'neighborhoods': [
         'oakland west',
