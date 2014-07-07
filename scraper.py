@@ -77,7 +77,7 @@ def parse_entry(entry):
 
 def email(matches):
     # params: From, To, Subject
-    message = Message('olivermaxwell@sonic.net', RECPIPENTS, "Scraper Results") 
+    message = Message('sender@email.com', RECPIPENTS, "Scraper Results") 
     results = ''
     for listing in matches['match']:
 
@@ -91,7 +91,7 @@ def email(matches):
                     matches.bedroom,matches.link))
 
     message.body = results
-    sender = Mailer('mail.sonic.net')
+    sender = Mailer('mail.server.net')
     sender.send(message)
 
 def scrape():
