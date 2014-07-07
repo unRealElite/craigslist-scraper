@@ -41,6 +41,16 @@ def parse_entry(entry):
     hook = link.contents[0]
     ret['hook'] = hook
 
+    #Bedrooms
+    beds = entry.find('span', {'class':'content'})
+    parseBeds = BEDROOM_REGEX.search(beds)
+    bed_match = False
+    if parseBeds:
+        ret['beds'] = str(parseBeds.group(1))
+        print ret['beds']
+        if ret['beds'] == settings.bedrooms:
+            bed_match = True
+
     #Price
     price = entry.find('span', {'class': 'price'}).contents[0]
     price_g = PRICE_REGEX.search(price)
@@ -58,7 +68,7 @@ def parse_entry(entry):
         if n in neighborhood:
             neighborhood_match = True
 
-    ret['match'] = price_match and neighborhood_match
+    ret['match'] = price_match and neighborhood_match and bed_match
 
     return ret
 
@@ -80,7 +90,10 @@ def scrape():
         all_entries[parsed['id']] = parsed
         if parsed['match']:
             cprint(str(parsed), 'green')
-            Notifier.notify(parsed['hook'], title='Craigslist', open=settings.notifierurl+parsed['link'], )
+            # Notifier.notify(parsed['hook'], title='Craigslist', open=settings.notifierurl+parsed['link'], )
+            '''
+            Implement e-mail functions here
+            '''
 
 
 
