@@ -19,12 +19,15 @@ import md5
 import re
 import time
 import urllib2
-
+from pync import Notifier
 from mailer import Mailer
 from mailer import Message
 from config import settings
 
+RECPIPENTS = ['example@server1.com', 'example@server2.com', 'example@server3.com']
+
 PRICE_REGEX = re.compile('\$([\d]+)')
+BEDROOM_REGEX = re.compile('/\d[b][r]/gi')
 all_entries = {}
 
 
@@ -110,7 +113,7 @@ def scrape():
         if parsed['match']:
             cprint(str(parsed), 'green')
             email(parsed)
-
+            #Notifier.notify(parsed['hook'], title='Craigslist', open=settings.notifierurl+parsed['link'], )
 
 if __name__ == '__main__':
     while True:
