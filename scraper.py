@@ -72,6 +72,24 @@ def parse_entry(entry):
 
     return ret
 
+def email(matches):
+    # params: From, To, Subject
+    message = Message('olivermaxwell@sonic.net', RECPIPENTS, "Scraper Results") 
+    results = ''
+    for listing in matches['match']:
+
+        results.append("""
+
+        {0}\tPrice: {1}
+        Bedrooms: {2}
+        {3}\n\n 
+
+        """.format(matches.title,matches.price,
+                    matches.bedroom,matches.link))
+
+    message.body = results
+    sender = Mailer('mail.sonic.net')
+    sender.send(message)
 
 def scrape():
     html = urllib2.urlopen(settings.url).read()
@@ -90,11 +108,7 @@ def scrape():
         all_entries[parsed['id']] = parsed
         if parsed['match']:
             cprint(str(parsed), 'green')
-            # Notifier.notify(parsed['hook'], title='Craigslist', open=settings.notifierurl+parsed['link'], )
-            '''
-            Implement e-mail functions here
-            '''
-
+            email(parsed)
 
 
 if __name__ == '__main__':
