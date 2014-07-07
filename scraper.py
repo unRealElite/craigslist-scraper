@@ -19,7 +19,6 @@ import md5
 import re
 import time
 import urllib2
-from pync import Notifier
 from mailer import Mailer
 from mailer import Message
 from config import settings
