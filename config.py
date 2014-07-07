@@ -15,24 +15,23 @@
 settings_dict = {
     'url': 'http://newyork.craigslist.org/que/aap/',
     'notifierurl': 'http://newyork.craigslist.org',
-    'period': 300,
+    'period': 21600,
     'neighborhoods': [
-        'astoria',
-        'sunnyside',
+        'oakland west',
+        'emeryville',
+        'downtown oakland',
+        'oakland lake meritt / grand',
+        'oakland north / temescal',
     ],
     'ignored_neighborhoods': [
-        'ditmars',
-        'astoria (ditmars area)',
-        'jackson heights',
-        'briarwood',
-        'rego park',
-        'bayside',
-        'jamaica',
-        'forest hills',
-        'queens village',
-        'woodhaven'
+        'Richmond',
+        'San Leandro',
+        'Orinda',
+        'Hayward',
+        'Albany',
+        'Berkeley'
     ],
-    'max_rent': 1600,
+    'max_rent': 2000,
     'database': 'test.db'
 }
 
