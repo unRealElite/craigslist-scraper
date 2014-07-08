@@ -33,7 +33,7 @@ settings_dict = {
         'Berkeley'
     ],
     'max_rent': 2000,
-    'database': 'test.db'
+    'database': 'test.db' # not really sure where this is made or where it is implemented
 }
 
 
