@@ -27,3 +27,4 @@
 - Retool parser for XML, not raw HTML
 - Debug smtp
 - Debug parsers
+- Setup db hooks and logic
