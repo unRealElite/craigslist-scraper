@@ -11,3 +11,19 @@
 
 ### Install [mailer](https://pypi.python.org/pypi/mailer/)
 - $ sudo pip mailer
+
+### Functional Requirements
+- Parses out crucial information from listings and creates a digest for the recipient
+- Only sends out newest listings since last digest
+
+### Engineering Requirments
+- Parse through RSS/XML feed, find desired information
+- Utilize regex for information not easily accessed (eg not in kv pairs)
+- Formatting parsed info in an HTML email and send to recipients
+- Track listings through database (unimplemented)
+
+
+### TODO:
+- Retool parser for XML, not raw HTML
+- Debug smtp
+- Debug parsers
