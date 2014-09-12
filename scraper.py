@@ -45,7 +45,7 @@ def parse_entry(entry):
     ret['hook'] = hook
 
     #Bedrooms
-    beds = entry.find('span', {'class':'content'})
+    beds = entry.find('span', {'class':'12'})
     parseBeds = BEDROOM_REGEX.search(beds)
     bed_match = False
     if parseBeds:
@@ -103,14 +103,14 @@ def scrape():
         try:
             parsed = parse_entry(entry)
         except:
-            #cprint("\n+Failure: " + str(entry), 'red')
+            print("\n+Failure: {0}").format(str(entry))
             continue
 
         if parsed['id'] in all_entries:
             continue
         all_entries[parsed['id']] = parsed
         if parsed['match']:
-            cprint(str(parsed), 'green')
+            print(str(parsed))
             email(parsed)
             #Notifier.notify(parsed['hook'], title='Craigslist', open=settings.notifierurl+parsed['link'], )
 
